@@ -275,4 +275,49 @@ SELECT player
   FROM goal JOIN game ON matchid = game.id
  WHERE stadium = 'National Stadium, Warsaw'
 
- 
+"More JOIN operations"
+
+SELECT id, title
+ FROM movie
+ WHERE yr=1962
+
+SELECT yr
+  FROM movie
+ WHERE title = 'Citizen Kane'
+
+SELECT id, title, yr
+  FROM movie
+ WHERE title LIKE '%Star Trek%'
+ORDER BY yr
+
+SELECT id
+  FROM actor
+ WHERE name = 'Glenn Close'
+
+SELECT id
+  FROM movie
+ WHERE title = 'Casablanca'
+
+SELECT name
+  FROM casting JOIN actor ON actorid = actor.id
+ WHERE movieid = 11768
+
+SELECT name
+  FROM casting JOIN actor ON actorid = actor.id JOIN movie 
+  ON movieid = movie.id
+ WHERE title = 'Alien'
+
+SELECT title
+   FROM casting JOIN movie ON movieid = movie.id JOIN actor 
+   ON actorid = actor.id
+  WHERE name = 'Harrison Ford'
+
+SELECT title
+   FROM casting JOIN movie ON movieid = movie.id JOIN actor 
+   ON actorid = actor.id
+  WHERE name = 'Harrison Ford' AND ord <> 1
+
+SELECT title, name
+   FROM casting JOIN movie ON movieid = movie.id JOIN actor 
+   ON actorid = actor.id
+  WHERE yr = 1962 AND ord = 1
