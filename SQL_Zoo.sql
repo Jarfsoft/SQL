@@ -363,4 +363,42 @@ SELECT name, CASE WHEN dept < 3 THEN 'Sci'
              END
    FROM teacher
 
+"Window functions"
+
+SELECT lastName, party, votes
+  FROM ge
+ WHERE constituency = 'S14000024' AND yr = 2017
+ORDER BY votes DESC
+
+SELECT party, votes,
+       RANK() OVER (ORDER BY votes DESC) as posn
+  FROM ge
+ WHERE constituency = 'S14000024' AND yr = 2017
+ORDER BY party
+
+SELECT party, votes,
+       RANK() OVER (ORDER BY votes DESC) as posn
+  FROM ge
+ WHERE constituency = 'S14000024' AND yr = 2017
+ORDER BY party
+
+SELECT constituency,party, votes,
+       RANK() OVER (PARTITION BY constituency ORDER BY 
+       votes DESC) AS posn
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+   AND yr  = 2017
+ORDER BY posn, constituency
+
+SELECT constituency, party
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+   AND yr  = 2017
+ORDER BY constituency
+
+SELECT constituency,party, votes
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+   AND yr  = 2017
+ORDER BY constituency,votes DESC
 
