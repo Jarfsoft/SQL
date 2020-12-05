@@ -215,4 +215,34 @@ SELECT continent, name, area FROM world x
 
 SELECT continent, MIN(name) FROM world 
     GROUP BY continent
+"SUM and COUNT"
+
+SELECT SUM(population)
+FROM world
+
+SELECT MIN(continent) FROM world
+GROUP BY continent
+
+SELECT SUM(gdp) FROM world
+   WHERE continent = 'Africa'
+
+SELECT COUNT(name) FROM world
+   WHERE area >= 1000000
+
+SELECT SUM(population)
+   FROM world
+  WHERE name = 'Estonia' OR name = 'Latvia' OR name = 'Lithuania'
+
+SELECT continent, COUNT(name)
+   FROM world
+  GROUP BY continent
+
+SELECT continent, COUNT(name)
+   FROM world
+  WHERE population >= 10000000
+ GROUP BY continent
+
+SELECT continent FROM world x
+  WHERE (SELECT SUM(population) FROM world WHERE continent = x.continent) >= 100000000
+ GROUP BY continent
 
